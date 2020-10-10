@@ -1,0 +1,92 @@
+let sun;
+let angle = 0;
+let anglespeed = 0.6;
+let sunColor;
+
+
+
+function setup() {
+  createCanvas(800, 800);
+
+  // creating new Planet classes
+
+  // created sunColor variable to adjust alpha color of the sun later
+  sunColor = color(255, 250, 100, 130);
+  sun = new Planet(0, 0, 40, sunColor);
+
+  planet1 = new Planet(100, 10, 40, 255,195,160);
+  planet2 = new Planet(-300, 50, 20, 255,191,191);
+  planet3 = new Planet(-100, -10, 50, 255,155,130);
+  planet4 = new Planet(-110, 90, 40, 234,217,117);
+  planet5 = new Planet(30, 300, 10, 183,221,117);
+  planet6 = new Planet(120, -50, 20, 150,201,134);
+  planet7 = new Planet(-120, -260, 60, 109,132,70);
+  planet8 = new Planet(220, -260, 90, 117,183,221);
+  planet9 = new Planet(-210, -100, 80, 221,117,183);
+  planet10 = new Planet(-210, -200, 10, 255,94,54);
+  planet11 = new Planet(-210, 200, 50, 102,62,52);
+  planet12 = new Planet(-330, 100, 13, 155,130,255);
+
+
+
+  // initiate the use of degrees
+
+  angleMode(DEGREES)
+
+}
+
+
+function draw() {
+  background("black");
+
+  // place stars() function in separate drawing state to make the origin point (0,0) - makes stars blink across the whole screen
+
+  push();
+  stars();
+  pop();
+
+  // set new origin point to rotate planets around the center of the screen - center of the sun
+
+  translate(width / 2, height / 2);
+
+  sun.show();
+
+
+  rotate(angle)
+
+  // display planets
+
+  planet1.show();
+  planet2.show();
+  planet3.show();
+  planet4.show();
+  planet5.show();
+  planet6.show();
+  planet7.show();
+  planet8.show();
+  planet9.show();
+  planet10.show();
+  planet11.show();
+  planet12.show();
+  
+  // make planets continuously rotate at angle speed
+  
+  angle = angle + anglespeed;
+
+}
+
+
+// create stars() function to display blinking stars across canvas
+
+function stars() {
+
+  var galaxy = {
+    locationX: random(width),
+    locationY: random(height),
+    size: random(1, 6)
+  }
+  fill("pink")
+  ellipse(galaxy.locationX, galaxy.locationY, galaxy.size, galaxy.size);
+
+
+}
